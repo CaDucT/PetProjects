@@ -5,7 +5,8 @@ def hangmangame(max_tries, used_words, wrong_tries, random_word, hidden_word):
         print('Already used letters: ', used_words)
     guess = input('Let\'s guess the letter: ')
     guess = guess.upper()
-
+    if guess not in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' or len(guess) > 1:
+        hangmangame(max_tries, used_words, wrong_tries, random_word, hidden_word)
     while wrong_tries < max_tries and hidden_word != random_word:
         if guess in used_words:
             return hangmangame(max_tries,used_words,wrong_tries,random_word,hidden_word)
@@ -29,8 +30,6 @@ def hangmangame(max_tries, used_words, wrong_tries, random_word, hidden_word):
         print('You lost. The random word is: ', random_word)
         gg = input('Do you want to play again? ')
         if gg == 'yes' or gg == 'y' or gg == 'da':
-            used_words = []
-            wrong_tries = 0
             start_game()
         else:
             quit()
@@ -45,7 +44,7 @@ def start_game():
         random_word = random.choice(f)
     hidden_word = '*' * (len(random_word) - 1)
     print('The word has ', len(random_word) - 1, 'letters. Try to find out the word. \n',hidden_word)
-    print(random_word)
+
     hangmangame(max_tries, used_words, wrong_tries, random_word, hidden_word)
 
 start_game()
