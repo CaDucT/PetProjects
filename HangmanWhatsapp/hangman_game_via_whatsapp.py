@@ -67,11 +67,11 @@ def hearing(max_tries, used_words, wrong_tries, random_word, hidden_word):
 def glavnoe(max_tries, used_words, wrong_tries, random_word, hidden_word):
     driver.get('https://web.whatsapp.com/')
     time.sleep(3)
-    driver.find_element(By.XPATH, '//*[@id="pane-side"]/div[1]/div/div/div[9]').click()
+    driver.find_element(By.XPATH, '//*[@id="pane-side"]/div[1]/div/div/div[10]').click()
     time.sleep(2)
     driver.find_element(By.XPATH, '//*[@id="main"]/footer/div[1]/div/span[2]/div/div[2]/div[1]').send_keys('Hello. This is a hangman game!', Keys.ENTER)
     driver.find_element(By.XPATH, '//*[@id="main"]/footer/div[1]/div/span[2]/div/div[2]/div[1]').send_keys('The word has ', len(random_word)-1, ' letters. Try to find out the word \n', hidden_word, Keys.ENTER)
-    driver.find_element(By.XPATH, '//*[@id="pane-side"]/div[1]/div/div/div[9]').click()
+    driver.find_element(By.XPATH, '//*[@id="pane-side"]/div[1]/div/div/div[10]').click()
     hearing(max_tries, used_words, wrong_tries, random_word, hidden_word)
 
 def start_game():
