@@ -3,16 +3,32 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium import webdriver
+from PIL import Image
 import time
+import os
 
 ser = "C:\\webdrivers\\chromedriver.exe"
 driver = webdriver.Chrome(ser)
 driver.maximize_window() # maximize browser's window
 driver.get('https://google.ru')
 driver.find_element(By.XPATH, '//*[@id="L2AGLb"]/div').click()
+element = driver.find_element(By.XPATH, "/html/body/div[1]/div[2]/div/img")
+location = element.location
+size = element.size
+driver.save_screenshot("pageImage.png")
+
+# crop image
+x = location['x']
+y = location['y']
+width = location['x']+size['width']
+height = location['y']+size['height']
+im = Image.open('pageImage.png')
+im = im.crop((int(x), int(y), int(width), int(height)))
+im.save('element.png')
 spisok = ['биткоин', 'погода', 'курс']
 
-def listen_to(btc, weather, curr):
+def listen_to():
     while True:
         time.sleep(1)
         guess = driver.find_element(By.XPATH, '//*[@id="content"]/div/div[1]/div[3]/div[2]/div[3]/div/div/div[2]/div/div[1]').text
@@ -40,7 +56,7 @@ def weather():
     WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, '//*[@id="im_editable46161369"]')))
     driver.find_element(By.XPATH, '//*[@id="im_editable46161369"]').send_keys('Погода сейчас ', weather, Keys.ENTER)
     time.sleep(1)
-    listen_to(btc, weather, curr)
+    listen_to()
 
 def btc():
     driver.execute_script("window.open('');")
@@ -54,7 +70,7 @@ def btc():
     WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, '//*[@id="im_editable46161369"]')))
     driver.find_element(By.XPATH, '//*[@id="im_editable46161369"]').send_keys('Курс биткоина ', btc, Keys.ENTER)
     time.sleep(1)
-    listen_to(btc, weather, curr)
+    listen_to()
 def curr():
     driver.execute_script("window.open('');")
     driver.switch_to.window(driver.window_handles[1])
@@ -67,7 +83,7 @@ def curr():
     WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, '//*[@id="im_editable46161369"]')))
     driver.find_element(By.XPATH, '//*[@id="im_editable46161369"]').send_keys('Курс кроны к тенге на сегодня ', curr, Keys.ENTER)
     time.sleep(1)
-    listen_to(btc, weather, curr)
+    listen_to()
 
 def vk_sign():
 
@@ -89,6 +105,6 @@ def vk_sign():
                         '//*[@id="box_layer"]/div[2]/div/div[1]/div[2]/a').click()  # click redirect to private messages
 
     WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, '//*[@id="im_editable46161369"]')))
-    listen_to(btc, weather, curr)
+    listen_to()
 
 vk_sign()
