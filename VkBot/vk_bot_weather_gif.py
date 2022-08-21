@@ -144,6 +144,7 @@ def weather():
 
     make_gif(r'C:\Users\nonse\PycharmProjects\PetProjects\google_images')
     driver.close()
+
     driver.switch_to.window(driver.window_handles[0])
     WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, '//*[@id="im_editable46161369"]')))
     driver.find_element(By.XPATH,'//*[@id="content"]/div/div[1]/div[3]/div[2]/div[4]/div[2]/div[4]/div[1]/div[2]/div/div/a').click()
@@ -154,7 +155,7 @@ def weather():
     WebDriverWait(driver, 10).until(asd).click()
     pyautogui.moveTo(250, 50)
     time.sleep(1)
-    pyautogui.write(r'C:\Users\nonse\PycharmProjects\PetProjects\VkBot\google.gif')
+    pyautogui.write(r'C:\Users\nonse\PycharmProjects\PetProjects\VkBot\new.gif')
     time.sleep(1)
     pyautogui.press('enter')
     WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.XPATH, '//*[@id="content"]/div/div[1]/div[3]/div[2]/div[4]/div[2]/div[4]/div[1]/button/span[2]')))
