@@ -23,10 +23,10 @@ btc = driver.find_element(By.XPATH, '//*[@id="crypto-updatable_2"]/div[3]/div[2]
 
 driver.get('https://vk.com')
 
-driver.find_element(By.XPATH, '//*[@id="index_email"]').send_keys('+77753054795')
+driver.find_element(By.XPATH, '//*[@id="index_email"]').send_keys('XXX') #change XXX to your credentials
 driver.find_element(By.XPATH, '//*[@id="index_login"]/div/form/button[1]/span').click()
 WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, '/html/body/div[1]/div/div/div/div[2]/div/form/div[1]/div[3]/div[2]/div[1]/div/input')))
-driver.find_element(By.XPATH, '/html/body/div[1]/div/div/div/div[2]/div/form/div[1]/div[3]/div[2]/div[1]/div/input').send_keys('qwerty4444')
+driver.find_element(By.XPATH, '/html/body/div[1]/div/div/div/div[2]/div/form/div[1]/div[3]/div[2]/div[1]/div/input').send_keys('XXX') #enter your own password
 driver.find_element(By.XPATH, '/html/body/div[1]/div/div/div/div[2]/div/form/div[2]/button/span[1]/span').click()
 WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, '//*[@id="l_fr"]')))
 driver.find_element(By.XPATH, '//*[@id="l_fr"]').click()#click friends
